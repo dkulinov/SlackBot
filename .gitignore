@@ -1,0 +1,4 @@
+*.env
+agenda.*
+.idea
+__pycache__

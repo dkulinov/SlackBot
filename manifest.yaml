@@ -1,0 +1,52 @@
+display_information:
+  name: Demo App
+features:
+  app_home:
+    home_tab_enabled: true
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: false
+  bot_user:
+    display_name: Demo App
+    always_online: true
+  shortcuts:
+    - name: Summarize this message
+      type: message
+      callback_id: summarize_message_shortcut
+      description: Summarizes a message
+    - name: Summarize (Global)
+      type: global
+      callback_id: summarize_global_shortcut
+      description: Summarizes messages
+  slash_commands:
+    - command: /summarize
+      url: /slack/events
+      description: Summarizes chat
+      usage_hint: "[start date] [end date] (yyyy-mm-dd format)"
+      should_escape: false
+oauth_config:
+  scopes:
+    bot:
+      - chat:write
+      - channels:history
+      - groups:history
+      - im:history
+      - users:read
+      - mpim:history
+      - commands
+      - app_mentions:read
+settings:
+  event_subscriptions:
+    request_url: /slack/events
+    bot_events:
+      - app_home_opened
+      - message.channels
+      - message.groups
+      - message.im
+      - message.mpim
+      - app_mention
+  interactivity:
+    is_enabled: true
+    request_url: /slack/events
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
